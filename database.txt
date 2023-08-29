@@ -1,0 +1,667 @@
+
+--data- Any kind of information such as studnt info ,audio ,video, files, etc
+
+--database- logical storage of data
+
+--DBMS databse managment system --> it is system or software use to manage any kind of database
+
+--data is  devided into 3 types
+1 ER diagram-->
+Entity Relationship diagram.
+what is entity if we take  eg of student data then his contact no,email address,etc...is hirachical tree...
+2 hirachical/tree
+3 RDBMS(relational database managment system)
+rdbms it is system or software which we can manage data storing in table format
+
+ER diagram-->
+Types of Relationships-->
+1 one to one e.g --> 1one person one id..2 one captain one team
+2 one to many/many to one e.g-->one teacher many student..2 one team many player
+3 many to many--> 1 more sellers more buyer...2 many student learn from many teachers
+
+<-----RDBMS---->
+RDBMS Products
+oracle 
+ms sql
+ my sql
+db2
+ms Access
+sql(structure quary Language)--> 
+1 this is pure database language
+2 by using sql we can interact any relational database  
+
+
+SQL (structure query language)
+SQL command / Query Statements
+DDL (data defination language)
+----> (create,alter,Drop,Truncate)
+DML (data manipulation language)
+--->(insert,update,delete)
+DCL(Data control language)
+-->(Grant revoke)
+DQL(data query language)
+--->(select)
+TcL(Transaction control language)
+--->(cummit, roleback)
+
+
+ day--2) 27,07,23------->
+Table in oracle 
+select *from hr.employees
+hr.department
+hr.locations
+hr.jobs
+
+
+
+
+
+where--> this is used to apply condition in database
+select *from hr.employees
+select *from hr.locations
+select *from hr.department
+select *from hr.jobs
+select employee_id,first_name,last_name from hr.employees
+select employee_id,first_name,last_name,salary from hr.employees
+select employee_id,first_name,last_name,salary,'welcome' from hr.employees
+
+
+QUE --> display employee_id,first_name of those employee whose employee_id is less than 110 
+ans. --> select employee_id,first_name from hr.employees where employee_id<110
+
+select employee_id Id from hr.employees
+select employee_id as Id from hr.employees
+select employee_id "emp Id" from hr.employees
+
+---> order  is condition used to order data in ascending and descending order
+  ans.-->  select employee_id,first_name from hr.employees order by first_name
+select employee_id,last_name from hr.employees order by last_name asc
+select employee_id,last_name from hr.employees order by last_name desc
+
+select employee_id,first_name from hr.employees order by employee_id desc
+operators 
+-- 1) arithmatic(+'-,*,/)
+
+select employee_id,salary from hr.employees
+select employee_id,salary,salary+1000 from hr.employees
+select employee_id,salary,(salary*10/100)from hr.employees where salary<10000
+select employee_id,salary,(salary*1.10)from hr.employees where salary<10000
+select employee_id,salary,(salary*1.15)from hr.employees where salary<10000
+
+--- 2) comparison(<,>,<=,>=,=,b=)
+Q-->display all the details of employee 110
+select * from hr.employees where employee_id=110
+select * from hr.employees where employee_id!=110
+
+
+  ---3) logical(and, or ,not)
+display emp_id,fname,lname,sal,of those employees whose employee_id is less than 150 and salary grater than 1000
+select employee_id,first_name,last_name,salary from hr.employees where employee_id>150 and salary>10000
+--->Display details of all the employee except employee_id 110,120,145,152 
+---select * from hr.employees where employee_id not in(110,120,145,152)
+
+--4) Range(between,not between,in)
+
+---> select employee_id,first_name,last_name from hr.employees where employee_id between 110 and 120
+--> select employee_id,first_name,last_name from hr.employees where employee_id not between 110 and 120
+-->select employee_id,first_name,last_name from hr.employees where employee_id in (120,121,122,123)
+
+--5) pattern matching(like)
+select employee_id,first_name,last_name from hr.employees where first_name like 'A%' 
+--> it will be useful if 1sr name starts with A
+select employee_id,first_name from hr.employees where first_name like '%a' --> ends with 'A'
+-->it will be useful if last name end with a--> ends with 'a'
+select employee_id,first_name from hr.employees where first_name like '%a%'
+--> it will be useful if occurance anywhere
+select employee_id,first_name from hr.employees where first_name like '_a%'
+
+
+que-->e as 2nd last 
+select employee_id,first_name from hr.employees where first_name like '%e_'
+
+que-->a as 2nd chracter and i as 4th 
+select employee_id,first_name from hr.employees where first_name like '_a%i____'
+
+
+======================================================function =============================================
+        character-->class manipulation 
+                                       ==>upper()
+                                       ==>lower()
+                                       ==>init()
+       character manipulation 
+                                      ==>concat()
+                                      ==>length()
+                                      ==>substr()
+                                      ==>instr()
+                                      ==>ipad()
+                                      ==>rpad()
+                                      ==>reverse()
+                                      ==>replace()
+                                      ==>trim()
+                                      
+___________________________________________________________________________________________________________
+        number-->
+                    round()
+                    trunc()
+                    mod()
+
+___________________________________________________________________________________________________________
+        date-->
+                   months_between()
+
+                   add_month()
+
+
+___________________________________________________________________________________________________________________________________====>
+ character-->calss manipulation 
+                                       ==>upper()
+
+                                       ==>lower()
+
+                                       ==>init()
+
+upper====>
+select upper ('welcome to pune')from dual
+select first_name, Upper(first_name) from hr.employees
+
+
+lower===>
+select lower ('welcome to pune')from dual
+select first_name, Lower(first_name) from hr.employees
+
+==>init()
+select 10+20 from dual
+select 'welcome to pune'from dual
+
+____________________________________________________________________________________________________________________________________
+concate===>
+
+select concat('welcome','pune')from dual
+select first_name||'  '|| last_name from hr.employees
+
+to concate and write --> full name of employee 100 is Steven King
+
+select 'full name of employee' ||'  '||employee_id||' is '|| first_name ||'  '||last_name from hr.employees
+____________________________________________________________________________________________________________________________________
+select length ('welcome to pune')from dual
+==> to calculate or count number of spaces between 'welcome to pune'
+to write word having 5 letter
+_____________________________________________________________________________________________
+select substr('welcome to pune',2,5) from hr.employees
+select substr('welcome to pune',1,6) from hr.employees
+
+--> the substr is used to 2 word from i.e WE of welcome and 5 is for last to pune will be erase
+_________________________________________________________________________________________________________
+select instr('welcome to pune','c') from dual
+it give number of word e.g welcome where c is 4 th number in given sentence 'welcome to pune'
+select instr('welcome to pune','e') from dual
+
+this lpadding
+select lpad('1234',6,'0')from dual
+ this rpadding
+select salary,rpad('1234','8','0')from hr.employees
+trim
+select 'welcome to  pune',trim ('w' from 'welcome to pune')from dual
+reverse
+select reverse('welcome')from dual
+replace
+select replace('pack and pune','p','b')from dual
+
+{{{{{{{
+
+select 10+20 from dual
+select 'welcome to pune'from dual
+select upper ('welcome to pune')from dual
+select initcap ('welcome to pune')from dual
+select first_name (upper) from hr.employee
+select first_name, Lower(first_name) from hr.employees
+select concat('welcome','pune')from dual
+select first_name||'  '|| last_name from hr.employees
+select 'full name of employee' ||'  '||employee_id||' is '|| first_name ||'  '||last_name from hr.employees
+select length ('welcome to pune')from dual
+select first_name,length('first_name')from hr.employees
+select substr('welcome to pune',2,5) from hr.employees
+select substr('welcome to pune',1,6) from hr.employees
+select substr('welcome to pune',2,4) from hr.employees
+select substr('welcome to pune',5,5) from hr.employees
+select instr('welcome to pune','c') from dual
+select instr('welcome to pune','e') from dual
+select lpad('1234',6,'0')from dual
+select salary,lpad('8','0')from hr.employees
+select salary,rpad('1234','8','0')from hr.employees
+select 'welcome to  pune',trim ('w' from 'welcome to pune')from dual
+select reverse('welcome')from dual
+select replace('pack and pune','p','b')from dual
+
+}}}}}
+
+
+31-07-23
+monday
+number round
+select round (12345.678,2)from dual
+select round (12345.678,1)from dual
+select round (12345.678,-1)from dual
+
+trunc
+select trunc (12345.678,2)from dual
+select trunc (12345.678,1)from dual
+select trunc (12345.678,-1)from dual
+
+mod
+
+select mod (17,2)from dual
+select mod (21,3)from dual
+
+timezone
+
+select sysdate from dual ss-mon-year
+select localtimestamp from dual 
+select current_timestamp from dual 
+
+select current_timestamp from dual 
+alter session set time_zone ='+5:30'    <----this is for indian timezone
+
+select months_between (sysdate,'31-may-2015')from dual
+
+
+select hire_date,months_between (sysdate,hire_date)from hr.employees <----- by using this we should know hire_date
+
+select hire_date, trunc(months_between(sysdate,hire_date))from hr.employees <--- in this where we calculate in months
+select hire_date, trunc(months_between(sysdate,hire_date)/12)from hr.employees <---- in this where we calculate in year
+
+select add_months (sysdate,2)from dual  ----> by this we can understood or calculate months from movement by adding @2 after sysdate 
+
+
+
+
+01-08-2023
+date to character conversion ---->
+to_chracter (sysdate , 'format')
+
+format---->
+yy - 23
+yyyy - 2023
+year - Twenty Twenty three
+mm - 08
+mon - aug
+month - august 
+d - 2(day of weak ,
+dd - 01 starting sunday= 0 )
+ddth - 1 st 
+ddspth - first 
+hh - hours
+mi - minutes
+ss - seconds
+
+_______________________________________>>>>> code 
+select to_char(sysdate ,'yyyy')from dual;==> this give result 2023
+select to_char(sysdate ,'yy')from dual; ==> this give result 23
+select to_char(sysdate ,'year')from dual;==> this give result twenty twenty three
+select to_char(sysdate ,'mm')from dual;==> this give result 08
+select to_char(sysdate ,'mon')from dual;==> this give result aug
+select to_char(sysdate ,'month')from dual;
+select to_char(sysdate ,'d')from dual;
+select to_char(sysdate ,'dd')from dual;
+select to_char(sysdate ,'ddth')from dual;
+select to_char(sysdate ,'ddspth')from dual;
+select to_char(sysdate ,'hh')from dual;
+select to_char(sysdate ,'mi')from dual;
+select to_char(sysdate ,'ss')from dual;
+
+task to do 
+find the details of employee who joined in month of july ===>
+__>select employee_id,first_name,hire_date,to_char(hire_date ,'month')from hr.employees where to_char(hire_date,'mon')='jul';
+select employee_id,first_name,hire_date,to_char(hire_date ,'month')from hr.employees where to_char(hire_date,'mm')='07';
+
+employee_id
+first_name
+hire_date
+month(july)
+
+
+_________________________________________________________________________________________________________________________________________________________________
+
+
+02,08,2022 by rohit sir
+
+round====> yamadhe for eg ghetl select round(123456.789,2)from dual==> ans will be 123456.79   ethe 8 je aahet 5 peksha mothe aahet tr 8madhe 1 add zhal mhnun 9 zhal and
+5 asel tr as it is value yete
+more e.g==> of round
+select round(123456.789,1)from dual
+select round(123456.789,0)from dual
+select round(123456.789,-2)from dual
+
+salary===>
+select salary from hr.employee
+
+select salary ,round(salary/30) from hr.employees
+
+
+trunc===>
+select trunc(123456.789,2)from dual
+select trunc(123456.789,2)from dual
+select trunc(123456.789,0)from dual
+select trunc(123456.789,-2)from dual
+
+================================================================mod======================================================================
+mod mhnje baki jr dividation kel tr 10/3 tr baki raht 1 tr he mod
+
+select mod (10,3)from dual
+====================================date================================================================================================
+1) sysdate===============> written date dd:mm:yy
+2) locationtimestamp=====> written date with time
+3) current_timestamp     > written date with timezone      
+
+india's gmt +5:30
+ 
+select sysdate from dual ss-mon-year
+select localtimestamp from dual 
+select current_timestamp from dual 
+
+select current_timestamp from dual 
+alter session set time_zone ='+5:30'    <----this is for indian timezone
+==================================================================================================================month====================================
+select months_between (sysdate,'1-1-2023')from dual
+select round(months_between(sysdate,'1-jan-2023'))from dual
+select round(months_between(sysdate,'1-jan-2023')/12)from dual
+
+select hire_date, round(months_between(sysdate,hire_date)/12)from hr.employees <==in this we can  identify or caalculate number  of year from employee joined
+
+select hire_date, round(months_between(sysdate,hire_date)/12)"total years"from hr.employees
+
+select add_months(sysdate,2)from dual  <===== by this we can add next 2 or more years to it
+select hire_date,add_months(hire_date,2)from hr.employees<==== we added to hire_date
+
+===============================================================================================================================================================
+
+date to character conversion ---->
+to_chracter (sysdate , 'format')
+
+format---->
+yy - 23
+yyyy - 2023
+year - Twenty Twenty three
+mm - 08
+mon - aug
+month - august 
+d - 2(day of weak ,
+dd - 01 starting sunday= 0 )
+ddth - 1 st 
+ddspth - first 
+hh - hours
+mi - minutes
+ss - seconds
+
+_______________________________________>>>>> code 
+select to_char(sysdate ,'yyyy')from dual;==> this give result 2023
+select to_char(sysdate ,'yy')from dual; ==> this give result 23
+select to_char(sysdate ,'year')from dual;==> this give result twenty twenty three
+select to_char(sysdate ,'mm')from dual;==> this give result 08
+select to_char(sysdate ,'mon')from dual;==> this give result aug
+select to_char(sysdate ,'month')from dual;
+select to_char(sysdate ,'d')from dual;
+select to_char(sysdate ,'dd')from dual;
+select to_char(sysdate ,'ddth')from dual;
+select to_char(sysdate ,'ddspth')from dual;
+select to_char(sysdate ,'hh')from dual;
+select to_char(sysdate ,'mi')from dual;
+select to_char(sysdate ,'ss')from dual;
+
+
+display employee_id,hire_date and year employee who joined in the month of july
+
+display employee_id, hire_day in the order of day starting of monday
+
+select employee_id,first_name,hire_date,to_char(hire_date,'dd/mm/yy')"who joined in july"from hr.employees where to_char(hire_date,'mm')=07
+
+select to_char(hire_date,'day'),to_char(hire_date,'d') from hr.employees order by mod(to_char(hire_date,'d')+5,7)
+
+
+select to_char(hire_date,'day')
+
+
+
+===================================================================================================================================================================
+
+
+03,08,2023
+
+grouping /agrigate function
+1) max()
+2) min()
+3) Avg()
+4) sum()
+5) Count()
+
+  select salary from hr.employees
+
+select employee_id,hire_date,salary,to_char(hire_date,'day'),to_char(hire_date,'d')from hr.employees order by mod(to_char(hire_date,'d')+5,7)
+
+ select max(salary) from hr.employees
+ select min(salary) from hr.employees
+ select Avg(salary) from hr.employees
+ select sum(salary) from hr.employees
+ select count(salary) from hr.employees
+
+Q ---> dispaly departmentwise higher salary
+select department_id,max(salary) from hr.employees group by department_id
+
+Q---> display yearwise total hired employees
+
+select to_char(hire_date,'yyyy'),count(employee_id)from hr.employees group by  to_char(hire_date,'yyyy') order by to_char(hire_date,'yyyy')
+
+Q--- dispaly yearwise total hired for those year which are greater than 1996
+
+select to_char(hire_date,'yyyy'),count(employee_id)from hr.employees where to_char(hire_date,'yyyy')>1996 group by to_char(hire_date,'yyyy') order by to_char(hire_date,'yyyy')
+
+  Q--display yearwise total hired_employees for those years whose total hired emploees  are greater 5
+Q--display yearwise total hired_employees for those years whose total hired emploees  are greater 5
+
+
+select to_char(hire_date,'yyyy'),count(employee_id)from hr.employees group by to_char(hire_date,'yyyy')having count(employee_id)>5 order by to_char(hire_date,'yyyy')
+
+
+
+this claws used in group by querry 
+it is used to apply condition for grouping function 
+==============================================================================================================================================================================================================================
+
+RANKING function :-
+
+row_number()
+rank()
+dense_rank()
+ntile()
+
+select salary ,row_number() over (order by salary desc)from hr.employees
+select salary ,row_number() over (order by salary desc),rank () over (order by salary desc)from hr.employees
+select salary ,row_number() over (order by salary desc),rank () over (order by salary desc), dense_rank () over (order by salary desc)from hr.employees
+select salary ,row_number() over (order by salary desc),rank () over (order by salary desc), dense_rank () over (order by salary desc),ntile(10) over (order by salary desc)from hr.employees
+
+
+08-06-2023
+it is used to combine column to join one or more table together to combine table we must have atleast one column in 1 table
+Types of join 
+1)inner join
+2)outer join 
+==============>left,right,full,outer join 
+3) self join
+4) equi join 
+5) non equi join 
+6) cross join
+
+select *from hr.employyes
+
+select *from hr.departments
+1  display employee_id,employee_name,last_name,salary,from hr.employees and dept_id and dept_name from hr.department ussing inner join
+
+select employee_id,first_name,last_name,salary,d.department_id,department_name from hr.empoyees e join hr.departments d on e.departmet_id=d.department_id   
+
+2 ==> display only matching employee id first name salary from hr.employees and epartment_id department name from department tablr 
+
+select employee_id,first_name,salary,department_id,department_name from hr.employees join hr.departments on hr.employees join hr.deparments on hr.employees.department_id=hr.departments.department_id
+
+3===> display first_name, departments of those employees whose deparment name start with a select first_name,department_name from hr.employees e join hr.departments d on
+e.department _id=d.department_id where department_name like 'A%'
+
+4 display dept_name wise total employees
+ select department_name,employee_name from hr.employees d join hr.departments e on d.department_name=e.department_name where department 
+
+5 display the name of employees where contense the character f 
+===> select employee_name from hr.employees e join hr.departments d on e.department_id=d.department_id where department_name like'f' select first_name from hr .employees
+
+self practice===>
+select *from hr.employees
+select *from hr.departments
+
+select employee_id,first_name,last_name,salary,hr.departments.department_id,department_name from hr.employees join hr.departments on hr.employees.department_id=hr.departments.department_id
+
+select employee_id,first_name,last_name,salary,hr.departments.department_id,department_name from hr.employees join hr.departments on hr.employees.department_id=hr.departments.department_id
+
+
+select employee_id,first_name,hr.departments.department_id from hr.employees join hr.departments on hr.employees.department_id=hr.departments.department_id
+
+
+=======x===========================x==============================x====================================x===============================x=======================x========
+=======x===========================x==============================x====================================x===============================x=======================x========
+=======x===========================x==============================x====================================x===============================x=======================x========
+=======x===========================x==============================x====================================x===============================x=======================x========
+07-08-2023
+
+select first_name,last_name,salary, hr.departments. department_id,department_name from hr.employees join hr.departments on hr.employees.department_id=hr.departments.department_id
+
+display department name first name higher date and salary of those employee whose hire date greater than 1 jan 1996
+
+select first_name,hire_date,salary, hr.departments. department_id,department_name from hr.employees join hr.departments on hr.employees.department_id=hr.departments.department_id where hire_date>'1-jan-1996'
+
+  select first_name,hire_date, salary,hr.departments.department_id,department_name
+
+    Q===>  dispaly first name and city those emplooyee whose city starts with S
+
+select* from hr.departments
+select* from hr.employees
+select* from hr.locations
+
+select first_name,city from hr.employees e join hr.departments d on e.department_id=d.department_id join hr.locations l on d.location_id=l.location_id where city like 'S%'
+
+
+Outer join :- having 3 types 
+ outer ====to use to fetch all the record from one side table and only matching to from another side table
+1) Left Outer Join ===> it will fetch all record from left side table and only matching record from right side table if it is not matched display null value on right side 
+table 
+2) Right Outer Join
+===> it will fetch all record from right side table and only matching record from left side table and as vise to upper 
+3) Full Outer Join 
+====> it is the combination of left and right it means it fetch matching as well as not matching record from both side table
+
+
+==================================x===========================x==============================x=x=====================================
+self join
+if table join with itself then the join is calld self join
+ Q====>  display job id of those employee whose emp_id and manager id are matched
+  Q====>  display job id of those employee whose emp_id and manager id are matched
+
+
+(select employee_id,job_id,manager_id,job_id)
+
+select e.employee_id,e.job_id,e1.manager_id,e1.job_id from hr.employees e join hr.employees e1 on e.employee_id=e1.manager_id
+======================================xx=========================x========================x===========================x===================================
+===================x======================x============================x===========================x==========================x====================x===============x========
+EQUI join 
+=========> if we are using only (=) symbol to compare to column then that join is callled equi jooin in inner join we can any comparison operator to compare to column
+  
+select employee_id,first_name,department_name from hr.employees e join hr.departments d on e.department_id=d.department_id
+
+NON EQUI join
+select employee_id,first_name,department_name from hr.employees e join hr.departments d on e.department_id!=d.department_id
+
+Cross join 
+it use a cartition product 2 it means each raw of 1 table will be display all record another table 3 it does not recuired common column 
+
+select employee_id,city from hr.employees cross join hr.locations 
+
+
+==================================================xx====================================xx=====================================xx================================
+==================================================xx====================================xx=====================================xx================================
+==================================================xx====================================xx=====================================xx================================
+==================================================xx====================================xx=====================================xx================================
+==================================================xx====================================xx=====================================xx================================
+8-8-23 
+   Q=== display emp id first name salary of those emp whoses salary greter than the salary of emp id 110
+
+select employee_id,first_name,salary from hr.employees where salary > 
+(
+select salary from hr.employees where employee_id=110 
+)
+
+======================================================================
+ nested qury :>1st query output depends on 2nd query output that is called nested query
+bassic rule = output of inner query becomes input of outer query 
+types of subquery===
+
+1)single row query 
+if inner query returns only one row then that query is called sengle raw sub query 
+ 
+2)multiple raw subquery 
+if inner query return more than one row then that query is called multiple raw subquery 
+
+Q===>Dispaly emp id first name salry those emp whose salary is greater than david
+
+
+ANY operator ===
+
+select employee_id,first_name,salary from hr.employees where salary>any
+(
+select salary from hr.employees where first_name = 'David'
+)
+
+ALL operator ===>
+
+select employee_id,first_name,salary from hr.employees where salary>all
+(
+select salary from hr.employees where first_name = 'David'
+)
+
+
+
+in 
+
+=====================================================================================
+Q====> display 2nd max salary from hr.employees
+
+select max(salary) from hr.employees where salary<24000 
+(
+select max(salary) from hr.employees 
+)
+
+
+
+
+select * from
+(select salary ,dense_rank() over (order by salary desc) rank from hr.employees)where rank=2
+
+
+1)display name of department which has maximum no of employees
+
+select * from 
+(
+select department_name,total_employees,dense_rank() over ( order by total_employees desc) rank from 
+(
+select count(employee_id) total_employee , hr.departments.department_name from hr.employees join hr.departments on hr.employees.department_id=hr.departments.department_id group by department_name
+)) where rank = 2
+
+
+Q1)==> disp the name of dept which has maximum no of employees less than = 2
+ans==>
+
+
+
+Q2)==> display year in which minimum employee are hired 
+3)disp name of dep which spend maximum salary 
+4)if retirment criteria is 30 year from hire date then disp emp_id and 1st name of those employee who retired in 2024
+5)disp day wise total employee starting from tuesday
+
+
+
+
